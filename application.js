@@ -1,0 +1,1 @@
+require("@fabianboesiger/nodeframework")(__dirname);
