@@ -1,8 +1,5 @@
 wrap("layout.js", () => {
-    h1(translate({
-        "en": "Hello, World!",
-        "de": "Hallo, Welt!"
-    }));
+    h1("Fälis Blog");
     nav(() => {
         if(session.user !== undefined) {
             a({"href": "/profile"}, translate({

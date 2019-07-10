@@ -1,18 +1,19 @@
 :root {
-    --background-color: #37424a;
-    --accent-color: #f2d653;
+    --background-color: #F0F2E5;
+    --text-color: #403E2F;
+    --accent-color: #D13311;
     --main-gap: 12px;
     --form-gap: 12px;
 }
 
 html {
-    color: var(--accent-color);
+    color: var(--text-color);
     background-color: var(--background-color);
 }
 
 html, input {
-    font-family: "Fauna One";
-    font-size: 14px;
+    font-family: "Neuton";
+    font-size: 16px;
 }
 
 h1, h2, p, ul, form, nav, div.centered-form {
@@ -21,9 +22,11 @@ h1, h2, p, ul, form, nav, div.centered-form {
 }
 
 h1, h2 {
-    font-family: "Vollkorn SC";
+    font-family: "Open Sans Condensed";
+    text-transform: uppercase;
     margin-top: calc(var(--main-gap) * 2);
     line-height: 0.9em;
+    color: var(--accent-color);
 }
 
 h1 {
@@ -64,13 +67,15 @@ nav > a:last-child {
 }
 
 a {
-    color: var(--accent-color);
+    color: var(--text-color);
     font-style: italic;
     text-decoration: none;
+    transition: color 200ms;
+    outline: none;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: var(--accent-color);
 }
 
 div.centered-form {
@@ -87,10 +92,15 @@ label {
     display: block;
     position: absolute;
     z-index: 100;
-    transform: translate(10px, -8px);
+    transform: translate(10px, -10px);
     background-color: var(--background-color);
     padding: 2px;
-    font-size: 10px;
+    font-size: 12px;
+    transition: color 200ms;
+}
+
+label.hover, label.focus {
+    color: var(--accent-color);
 }
 
 input {
@@ -98,17 +108,28 @@ input {
     width: 100%;
     padding: 8px;
     transition: font-size 200ms;
-    border: 2px solid var(--accent-color);
+    border: 2px solid var(--text-color);
     border-radius: 8px;
     background-color: transparent;
+    color: var(--text-color);
+    transition: background-color 200ms, border-color 200ms;
+    outline: none;
+}
+
+input:hover, input:focus {
+    border: 2px solid var(--accent-color);
     color: var(--accent-color);
 }
 
 input[type=submit] {
     border: none;
     cursor: pointer;
-    background-color: var(--accent-color);
+    background-color: var(--text-color);
     color: var(--background-color);
+}
+
+input[type=submit]:hover, input[type=submit]:focus {
+    background-color: var(--accent-color);
 }
 
 label + input {
