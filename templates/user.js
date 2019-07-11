@@ -67,6 +67,7 @@
             "en": "Passwords have to match.",
             "de": "Die Passwörter müssen übereinstimmen."
         }),
+        "autofill": false,
         "save": false
     }
 })

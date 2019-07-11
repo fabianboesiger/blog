@@ -1,4 +1,6 @@
 ({
     "user": undefined,
-    "errors": []
+    "errors": [],
+    "sessions": [],
+    "parameters": undefined
 })

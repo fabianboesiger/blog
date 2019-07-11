@@ -1,7 +1,13 @@
 :root {
-    --background-color: #F0F2E5;
-    --text-color: #403E2F;
-    --accent-color: #D13311;
+    --background-color: #2c3e50;
+    --text-color: #ecf0f1;
+    --heading-color: #ecf0f1;
+    --link-color: #3498db;
+    --link-color-hover: #2980b9;
+    --accent-color: #95a5a6;
+    --accent-color-light: #bdc3c7;
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
     --main-gap: 12px;
     --form-gap: 12px;
 }
@@ -26,7 +32,7 @@ h1, h2 {
     text-transform: uppercase;
     margin-top: calc(var(--main-gap) * 2);
     line-height: 0.9em;
-    color: var(--accent-color);
+    color: var(--heading-color);
 }
 
 h1 {
@@ -67,15 +73,18 @@ nav > a:last-child {
 }
 
 a {
-    color: var(--text-color);
-    font-style: italic;
+    color: var(--link-color);
     text-decoration: none;
     transition: color 200ms;
     outline: none;
 }
 
 a:hover {
-    color: var(--accent-color);
+    color: var(--link-color-hover);
+}
+
+a:focus {
+    color: var(--link-color-focus);
 }
 
 div.centered-form {
@@ -116,7 +125,12 @@ input {
     outline: none;
 }
 
-input:hover, input:focus {
+input:hover {
+    border: 2px solid var(--accent-color-light);
+    color: var(--accent-color-light);
+}
+
+input:focus {
     border: 2px solid var(--accent-color);
     color: var(--accent-color);
 }
@@ -128,7 +142,11 @@ input[type=submit] {
     color: var(--background-color);
 }
 
-input[type=submit]:hover, input[type=submit]:focus {
+input[type=submit]:hover {
+    background-color: var(--accent-color-light);
+}
+
+input[type=submit]:focus {
     background-color: var(--accent-color);
 }
 
@@ -137,5 +155,13 @@ label + input {
 }
 
 ul {
-    padding-left: 12px;
+    padding-left: 16px;
+}
+
+ul.errors {
+    color: var(--error-color);
+}
+
+ul.successes {
+    color: var(--success-color);
 }
