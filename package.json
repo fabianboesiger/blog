@@ -1,0 +1,23 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabianboesiger/blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabianboesiger/blog/issues"
+  },
+  "homepage": "https://github.com/fabianboesiger/blog#readme",
+  "dependencies": {
+    "@fabianboesiger/nodeframework": "^1.0.19"
+  }
+}
