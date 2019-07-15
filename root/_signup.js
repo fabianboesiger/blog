@@ -5,9 +5,13 @@ wrap("layout.js", () => {
             "de": "Registrieren"
         }));
         nav(() => {
-            a({"href": "/"}, translate({
+            a({"href": "/index"}, translate({
                 "en": "Back",
                 "de": "Zurück"
+            }));
+            a({"href": "/signin"}, translate({
+                "en": "Sign In",
+                "de": "Anmelden"
             }));
         });
         request("user", save, translate({

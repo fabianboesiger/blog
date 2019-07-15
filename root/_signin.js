@@ -5,9 +5,13 @@ wrap("layout.js", () => {
             "de": "Anmelden"
         }));
         nav(() => {
-            a({"href": "/"}, translate({
+            a({"href": "/index"}, translate({
                 "en": "Back",
                 "de": "Zurück"
+            }));
+            a({"href": "/signup"}, translate({
+                "en": "Sign Up",
+                "de": "Registrieren"
             }));
         });
         request("user", (name, data, template, id) => {
@@ -15,10 +19,7 @@ wrap("layout.js", () => {
             if(user === null) {
                 return false;
             }
-            if(user.password === data.password) {
-                return true;
-            }
-            return false;
+            return require("bcrypt").compareSync(req.body.password, user.password);
         }, translate({
             "en": "The provided data is faulty",
             "de": "Die angegebenen Daten sind fehlerhaft"

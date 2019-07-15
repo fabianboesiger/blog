@@ -1,4 +1,0 @@
-({
-    "name": undefined,
-    "commodities": undefined
-})

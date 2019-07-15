@@ -4,18 +4,22 @@ if(session.user === undefined) {
 wrap("layout.js", () => {
     div({"class": "centered-form"}, () => {
         h1(translate({
-            "en": "Update Profile",
-            "de": "Profil ändern"
+            "en": "Settings",
+            "de": "Einstellungen"
         }));
         nav(() => {
-            a({"href": "/"}, translate({
+            a({"href": "/index"}, translate({
                 "en": "Back",
                 "de": "Zurück"
             }));
         });
+        h2(translate({
+            "en": "Change Password",
+            "de": "Passwort ändern"
+        }));
         request("user", update, translate({
-            "en": "This username is already in use",
-            "de": "Dieser Benutzername wird bereits verwendet"
+            "en": "The settings couldn't be applied",
+            "de": "Die Einstellungen konnten nicht übernommen werden"
         }), translate({
             "en": "Your profile was changed successfully",
             "de": "Dein Profil wurde erfolgreich geändert"

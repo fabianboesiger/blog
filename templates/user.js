@@ -47,7 +47,8 @@
             "en": "Password is required.",
             "de": "Das Passwort wird benötigt."
         }),
-        "autofill": false
+        "onsave": (data) => {return data.password.length <= 16 ? require("bcrypt").hashSync(data.password, 10): data.password;},
+        "autocomplete": false
     },
     "confirmPassword": {
         "label": translate({
@@ -67,7 +68,33 @@
             "en": "Passwords have to match.",
             "de": "Die Passwörter müssen übereinstimmen."
         }),
-        "autofill": false,
+        "autocomplete": false,
         "save": false
+    },
+    "developer": {
+        "type": "boolean",
+        "required": true,
+        "default": false,
+        "hidden": true
+    },
+    "writer": {
+        "label": translate({
+            "en": "Write Permission",
+            "de": "Schreibberechtigung"
+        }),
+        "type": "boolean",
+        "required": true,
+        "default": false,
+        "hidden": true
+    },
+    "moderator": {
+        "label": translate({
+            "en": "Moderator",
+            "de": "Moderator"
+        }),
+        "type": "boolean",
+        "required": true,
+        "default": false,
+        "hidden": true
     }
 })

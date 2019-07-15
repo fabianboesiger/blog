@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/fabianboesiger/blog#readme",
   "dependencies": {
-    "@fabianboesiger/nodeframework": "^1.0.19"
+    "@fabianboesiger/nodeframework": "^1.0.23",
+    "bcrypt": "^3.0.6",
+    "remarkable": "^1.7.1"
   }
 }

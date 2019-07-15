@@ -1,1 +1,3 @@
-require("@fabianboesiger/nodeframework")(__dirname);
+require("@fabianboesiger/nodeframework")({
+    "port": 42069
+});

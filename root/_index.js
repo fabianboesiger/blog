@@ -2,11 +2,15 @@ wrap("layout.js", () => {
     h1("Fälis Blog");
     nav(() => {
         if(session.user !== undefined) {
-            a({"href": "/profile"}, translate({
+            a({"href": "/profile?user=" + session.user}, translate({
                 "en": "Profile",
                 "de": "Profil"
             }));
-            a({"href": "/signout"}, translate({
+            a({"href": "/settings"}, translate({
+                "en": "Settings",
+                "de": "Einstellungen"
+            }));
+            a({"href": "/signout", "animation": "go-same"}, translate({
                 "en": "Sign Out",
                 "de": "Abmelden"
             }));
@@ -20,10 +24,24 @@ wrap("layout.js", () => {
                 "de": "Registrieren"
             }));
         }
+        a({"href": "/articles"}, translate({
+            "en": "Articles",
+            "de": "Artikel"
+        }));
     });
-    h2("Lorem Ipsum");
-    p("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.");
-    p("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.");
-    h2("Lorem Ipsum");
-    p("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.");
+    if(session.user !== undefined) {
+        h2(translate({
+            "en": "Hello, " + session.user + "!",
+            "de": "Hallo, " + session.user + "!"
+        }));
+    } else {
+        h2(translate({
+            "en": "Hello, World!",
+            "de": "Hallo, Welt!"
+        }));
+    }
+    p(translate({
+        "en": "Welcome at Fälis Blog.",
+        "de": "Willkommen bei Fälis Blog."
+    }));
 });

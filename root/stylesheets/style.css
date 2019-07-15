@@ -1,70 +1,221 @@
 :root {
-    --background-color: #2c3e50;
-    --text-color: #ecf0f1;
-    --heading-color: #ecf0f1;
-    --link-color: #3498db;
-    --link-color-hover: #2980b9;
-    --accent-color: #95a5a6;
-    --accent-color-light: #bdc3c7;
-    --error-color: #e74c3c;
-    --success-color: #2ecc71;
+    --background-color: #dfe6e9;
+    --background-color-active: #b2bec3;
+    --text-color: #2d3436;
+    --text-color-active: #636e72;
+    --link-color: #0984e3;
+    --link-color-active: #74b9ff;
+    --error-color: #d63031;
+    --error-color-active: #ff7675;
+    --success-color: #00b894;
+    --success-color-active: #55efc4;
+
     --main-gap: 12px;
     --form-gap: 12px;
+
+    --body-margin: 32px;
+
+    --transition-speed: 100ms;
+    --animation-speed: 200ms;
+
+    --max-width: 768px;
+}
+
+@font-face {
+    font-family: "Open Sans Condensed";
+    src: url("/fonts/OpenSansCondensed-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Neuton";
+    src: url("/fonts/Neuton-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Fira Code";
+    src: url("/fonts/FiraCode-Regular.ttf");
 }
 
 html {
     color: var(--text-color);
     background-color: var(--background-color);
+    overflow-x: hidden;
 }
 
 html, input {
     font-family: "Neuton";
-    font-size: 16px;
+    font-size: 20px;
 }
 
-h1, h2, p, ul, form, nav, div.centered-form {
+h1, h2, h3, h4, h5, h6, p, ul, form, nav, div.centered-form, table, blockquote {
     margin-top: var(--main-gap);
     margin-bottom: var(--main-gap);
 }
 
-h1, h2 {
+h1, h2, h3, h4, h5, h6 {
     font-family: "Open Sans Condensed";
     text-transform: uppercase;
     margin-top: calc(var(--main-gap) * 2);
     line-height: 0.9em;
-    color: var(--heading-color);
+    color: var(--text-color);
+    word-wrap: break-word;
 }
 
 h1 {
-    font-size: 32px;
-    margin-bottom: 0;
+    font-size: 48px;
 }
 
 h2 {
+    font-size: 32px;
+}
+
+h3 {
     font-size: 24px;
 }
 
+h4 {
+    font-size: 20px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 17px;
+}
+
 body {
-    margin: 32px;
+    margin: var(--body-margin);
 }
 
 main {
-    max-width: 768px;
+    max-width: var(--max-width);
     margin: auto;
 }
 
+@keyframes up-animation {
+    from {transform: translateX(-100vw);}
+    to {transform: translateX(0);}
+}
+
+main.up {
+    animation: up-animation var(--animation-speed);
+}
+
+@keyframes go-up-animation {
+    from {transform: translateX(0);}
+    to {transform: translateX(100vw);}
+}
+
+main.go-up {
+    animation: go-up-animation var(--animation-speed) forwards;
+}
+
+@keyframes down-animation {
+    from {transform: translateX(100vw);}
+    to {transform: translateX(0);}
+}
+
+main.down {
+    animation: down-animation var(--animation-speed);
+}
+
+@keyframes go-down-animation {
+    from {transform: translateX(0);}
+    to {transform: translateX(-100vw);}
+}
+
+main.go-down {
+    animation: go-down-animation var(--animation-speed) forwards;
+}
+
+@keyframes straight-animation {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+main.straight, main.start {
+    animation: straight-animation var(--animation-speed);
+}
+
+@keyframes go-straight-animation {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(10);
+        opacity: 0;
+    }
+}
+
+main.go-straight, main.end {
+    animation: go-straight-animation var(--animation-speed) forwards;
+}
+
+img {
+    display: block;
+    width: 100%;
+
+}
+
+@media only screen and (max-width: 832px) {
+    img {
+        width: calc(100% + (832px - 100vw));
+        transform: translateX(calc((100vw - 832px) * 0.5));
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    img {
+        width: calc(100% + var(--body-margin) * 2);
+        transform: translateX(calc(var(--body-margin) * -1));
+    }
+}
+
+
+
 nav {
-    margin-top: 0;
+    display: block;
+    margin-top: -12px;
     margin-bottom: calc(var(--main-gap) * 2);
+}
+
+nav::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 26px;
+    width: 100%;
 }
 
 nav > a {
     display: inline-block;
-    margin-left: 4px;
-    margin-right: 4px;
+    margin-right: 8px;
+}
+
+nav > a.reaction {
+    color: var(--background-color);
+    background-color: var(--text-color-active);
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 4px;
+    margin-top: 8px;
 }
 
 nav > a:first-child {
+    margin-left: 0;
+}
+
+nav > br + a {
     margin-left: 0;
 }
 
@@ -75,16 +226,12 @@ nav > a:last-child {
 a {
     color: var(--link-color);
     text-decoration: none;
-    transition: color 200ms;
+    transition: color var(--transition-speed);
     outline: none;
 }
 
-a:hover {
-    color: var(--link-color-hover);
-}
-
-a:focus {
-    color: var(--link-color-focus);
+a:hover, a:focus {
+    color: var(--link-color-active);
 }
 
 div.centered-form {
@@ -92,47 +239,57 @@ div.centered-form {
     margin: auto;
 }
 
-form > ul {
-    margin: 0;
-    margin-bottom: var(--form-gap);
-}
-
-label {
+label:first-child {
     display: block;
     position: absolute;
     z-index: 100;
-    transform: translate(10px, -10px);
+    transform: translate(10px, -11px);
     background-color: var(--background-color);
     padding: 2px;
-    font-size: 12px;
-    transition: color 200ms;
+    font-size: 14px;
+    transition: color var(--transition-speed);
+}
+
+div.input-wrapper.invalid > label {
+    color: var(--error-color);
 }
 
 label.hover, label.focus {
-    color: var(--accent-color);
+    color: var(--text-color-active);
 }
 
-input {
+div.input-wrapper.invalid > label.hover, div.input-wrapper.invalid > label.focus {
+    color: var(--error-color-active);
+}
+
+input:not([type=checkbox]), textarea, select {
     box-sizing: border-box;
     width: 100%;
     padding: 8px;
-    transition: font-size 200ms;
+    transition: font-size var(--transition-speed);
     border: 2px solid var(--text-color);
     border-radius: 8px;
     background-color: transparent;
     color: var(--text-color);
-    transition: background-color 200ms, border-color 200ms;
+    transition: background-color var(--transition-speed), border-color var(--transition-speed);
     outline: none;
 }
 
-input:hover {
-    border: 2px solid var(--accent-color-light);
-    color: var(--accent-color-light);
+textarea {
+    resize: vertical;
+    min-height: 128px;
 }
 
-input:focus {
-    border: 2px solid var(--accent-color);
-    color: var(--accent-color);
+div.input-wrapper.invalid > input:not([type=checkbox]), div.input-wrapper.invalid > textarea, div.input-wrapper.invalid > select {
+    border-color: var(--error-color);
+}
+
+input:not([type=checkbox]):hover, input:not([type=checkbox]):focus, textarea:hover, textarea:focus, select:hover, select:focus {
+    border: 2px solid var(--text-color-active);
+}
+
+div.input-wrapper.invalid > input:not([type=checkbox]):hover, div.input-wrapper.invalid > input:not([type=checkbox]):focus, div.input-wrapper.invalid > textarea:hover, div.input-wrapper.invalid > textarea:focus, div.input-wrapper.invalid > select:hover, div.input-wrapper.invalid > select:focus {
+    border: 2px solid var(--error-color-active);
 }
 
 input[type=submit] {
@@ -142,20 +299,43 @@ input[type=submit] {
     color: var(--background-color);
 }
 
-input[type=submit]:hover {
-    background-color: var(--accent-color-light);
+input[type=submit]:hover, input[type=submit]:hover {
+    background-color: var(--text-color-active);
 }
 
-input[type=submit]:focus {
-    background-color: var(--accent-color);
+@keyframes fade-in {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
 
-label + input {
+input[type=submit] + ul {
+    animation: fade-in var(--animation-speed);
+}
+
+div.input-wrapper {
     margin-bottom: var(--form-gap);
 }
 
+@keyframes shake-input {
+    0% {transform: translateX(-5px);}
+    20% {transform: translateX(4px);}
+    40% {transform: translateX(-3px);}
+    60% {transform: translateX(2px);}
+    80% {transform: translateX(-1px);}
+    100% {transform: translateX(0px);}
+}
+
+div.input-wrapper.invalid {
+    animation: shake-input var(--animation-speed);
+}
+
+
+div.input-wrapper > ul {
+    margin: 0;
+}
+
 ul {
-    padding-left: 16px;
+    padding-left: 24px;
 }
 
 ul.errors {
@@ -164,4 +344,148 @@ ul.errors {
 
 ul.successes {
     color: var(--success-color);
+}
+
+#articles {
+    transform: translateX(calc((100vw - var(--max-width)) / -2));
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: black;
+}
+
+@media only screen and (max-width: 832px) {
+    #articles {
+        transform: translateX(calc(var(--body-margin) * -1));
+    }
+}
+
+article {
+    width: 100vw;
+    height: calc(60vh - 100vw / 8);
+    min-height: 256px;
+    position: relative;
+    background-color: var(--text-color);
+    box-shadow: inset 0px 0px 256px black;
+    transition: box-shadow var(--transition-speed);
+}
+
+article:hover, article:focus {
+    box-shadow: inset 0px 0px 128px black;
+}
+
+article > div.image-holder {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    filter: brightness(40%);
+    box-shadow: inset 0px 0px 256px black;
+    transition: filter var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+article:hover > div.image-holder, article:focus > div.image-holder {
+    filter: brightness(80%);
+    box-shadow: inset 0px 0px 128px black;
+}
+
+article > h2 {
+    position: absolute;
+    margin: var(--body-margin);
+    color: var(--background-color);
+    transition: color var(--transition-speed);
+    max-height: 50%;
+    overflow: hidden;
+}
+
+article:hover > h2, article:focus > h2 {
+    color: var(--background-color-active);
+}
+
+article > p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: var(--body-margin);
+    color: var(--background-color);
+    transition: color var(--transition-speed);
+    max-height: 50%;
+    overflow: hidden;
+}
+
+article:hover > p, article:focus > p {
+    color: var(--background-color-active);
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 2px;
+}
+
+td {
+    border-top: 2px solid var(--text-color);
+}
+
+th {
+    font-family: "Open Sans Condensed";
+    text-align: left;
+    text-transform: uppercase;
+    background-color: var(--text-color);
+    color: var(--background-color);
+}
+
+pre, code {
+    font-family: "Fira Code"
+}
+
+blockquote {
+    display: inline-block;
+    position: relative;
+    margin-left: 32px;
+    margin-right: 32px;
+    font-style: italic;
+}
+
+blockquote::before {
+    content: "“";
+    position: absolute;
+    top: 4px;
+    left: -8px;
+}
+
+blockquote::after {
+    content: "”";
+    position: absolute;
+    bottom: 0px;
+    right: -8px;
+}
+
+.collapsible {
+    cursor: pointer;
+}
+
+.collapsible::after {
+    content: "▼";
+    display: inline-block;
+    transition: transform var(--transition-speed);
+}
+
+.collapsible.active::after {
+    transform: rotate(-180deg);
+}
+
+.content {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-speed) ease-out;
+}
+
+.content.active {
+    max-height: 10000px;
+    transition: max-height var(--transition-speed) ease-in;
 }
