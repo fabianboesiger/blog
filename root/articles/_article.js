@@ -1,21 +1,22 @@
+let id = req.params.id;
+
+if(id === undefined) {
+    redirect("/articles");
+    return;
+}
+
+let article = load("article", id);
+
+if(article === null) {
+    redirect("/articles");
+    return;
+}
+
 const fs = require("fs");
 const md = (new (require("remarkable"))());
 
 wrap("layout.js", () => {
-    let id = req.params.id;
-
-    if(id === undefined) {
-        redirect("/articles");
-        return;
-    }
-
-    let article = load("article", id);
-
-    if(article === null) {
-        redirect("/articles");
-        return;
-    }
-    
+    /*
     let cut = article.content.indexOf("\n");
     let title = article.content.substring(article.content.indexOf("# "));
     let content = null;
@@ -23,10 +24,15 @@ wrap("layout.js", () => {
         title = article.content.substring(article.content.indexOf("# "), cut);
         content = article.content.substring(cut);
     }
-    
+    */
+
+    let rendered = md.render(article.content);
+
+    let title = rendered.substring(rendered.indexOf("<h1>"), rendered.indexOf("</h1>") + 5);
+    let content = rendered.substring(rendered.indexOf("</h1>") + 5);
 
     if(title !== null) {
-        output += md.render(title);
+        output += title;
     }
 
     nav(() => {
@@ -52,6 +58,6 @@ wrap("layout.js", () => {
     });
     
     if(content !== null) {
-        output += md.render(content);
+        output += content;
     }
 });

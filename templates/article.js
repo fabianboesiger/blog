@@ -1,27 +1,24 @@
 ({
+    /*
     "id": {
         "unique": true,
         "unique-message": translate({
-            "en": "This Title is invalid, it contains invalid characters or is not unique",
-            "de": "Der Titel dieses Atikels ist invalide, er enthält ungültige Zeichen oder ist nicht einzigartig"
+            "en": "The title may only consist of the characters a-z, A-Z, 0-9, ä, Ä, ö, Ö, ü, Ü, dots, dashes and underscores.",
+            "de": "Der Titel dieses Atikels ist invalide, er enthält ungültige Zeichen"
         }),
         "hidden": true,
         "required": true,
         "onvalidate": (data) => {
-            if(!/^# .*/.test(data.content)) {
+            const md = (new (require("remarkable"))());
+            let rendered = md.render(data.content);
+            let start = rendered.indexOf("<h1>");
+            if(start === -1) {
                 return "";
             }
-            let to = data.content.indexOf("\n");
-            if(to === -1) {
-                to = data.content.length;
-            }
-            if(data.content.charAt(to - 1) === "\r") {
-                to--;
-            }
-            let old = data.content.substring(data.content.indexOf("# ") + 2, to).toLowerCase().trim();
+            let title = rendered.substring(start + 4, rendered.indexOf("</h1>"));
             let out = "";
-            for(let i = 0; i < old.length; i++) {
-                let c = old.charAt(i);
+            for(let i = 0; i < title.length; i++) {
+                let c = title.charAt(i);
                 switch(c) {
                     case " ": out += "-"; break;
                     case "ä": out += "ae"; break;
@@ -33,6 +30,32 @@
             return out;
         },
         "pass": "content"
+    },
+    */
+   "files": {
+        "type": "file",
+        "multiple": true,
+        "label": translate({
+            "en": "Upload Files",
+            "de": "Dateien hochladen"
+        }),
+        "extension": ["jpg", "png", "gif"],
+        "extension-message": translate({
+            "en": "File type is not valid, only JPGs, PNGs and GIFs are allowed",
+            "de": "Dateityp ist falsch, nur JPGs, PNGs und GIFs sind erlaubt"
+        }),
+        "postsave": (data) => {
+            const fs = require("fs");
+            let to = "./root/files/" + data._id;
+            if(!fs.existsSync(to)) {
+                fs.mkdirSync(to, {"recursive": true});
+            }
+            data.files.forEach((filename) => {
+                fs.rename("./temporary/" + filename, to + "/" +filename, (err) => {
+                    console.log(err);
+                });
+            });
+        }
     },
     "content": {
         "type": "textarea",
@@ -49,7 +72,7 @@
     "date": {
         "hidden": true,
         "required": true,
-        "onvalidate": (data) => {
+        "default": (data) => {
             if(data.date === undefined) {
                 return Date.now();
             } else {

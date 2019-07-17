@@ -2,7 +2,7 @@
     "username": {
         "unique": true,
         "unique-message": translate({
-            "en": "The username may only consist of the characters a-z, A-Z, 0-9, dots, dashes and underscores.",
+            "en": "The username may only consist of the characters a-z, A-Z, 0-9, dots, dashes and underscores",
             "de": "Der Benutzername darf nur aus den Zeichen a-z, A-Z, 0-9, Punkten, Bindestrichen und Unterstrichen bestehen"
         }),
         "label": translate({
@@ -47,7 +47,7 @@
             "en": "Password is required.",
             "de": "Das Passwort wird benötigt."
         }),
-        "onsave": (data) => {return data.password.length <= 16 ? require("bcrypt").hashSync(data.password, 10): data.password;},
+        "presave": (data) => {return data.password.length <= 16 ? require("bcrypt").hashSync(data.password, 10): data.password;},
         "autocomplete": false
     },
     "confirmPassword": {

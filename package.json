@@ -20,6 +20,8 @@
   "dependencies": {
     "@fabianboesiger/nodeframework": "^1.0.23",
     "bcrypt": "^3.0.6",
+    "busboy": "^0.3.1",
+    "parse-multipart": "^1.0.4",
     "remarkable": "^1.7.1"
   }
 }

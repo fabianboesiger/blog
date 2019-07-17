@@ -16,10 +16,6 @@ wrap("layout.js", () => {
                 "en": "Write Article",
                 "de": "Artikel verfassen"
             }));
-            a({"href": "/articles/upload"}, translate({
-                "en": "Upload Files",
-                "de": "Dateien hochladen"
-            }));
         }
     });
     articles = loadAll("article");
@@ -45,7 +41,7 @@ wrap("layout.js", () => {
                     imageSource = imageSource.substring(0, imageSource.indexOf("\""));
                 }
 
-                a({"href": "/articles/article?id=" + element.id}, () => {
+                a({"href": "/articles/article?id=" + element._id}, () => {
                     article(() => {
                         if(imageSource !== null) {
                             div({

@@ -42,12 +42,21 @@ html {
     overflow-x: hidden;
 }
 
-html, input {
+html,
+input {
     font-family: "Neuton";
     font-size: 20px;
 }
 
-h1, h2, h3, h4, h5, h6, p, ul, form, nav, div.centered-form, table, blockquote {
+h1, h2, h3, h4, h5, h6,
+p,
+ul, ol,
+form,
+nav,
+div.centered-form,
+table,
+blockquote,
+hr {
     margin-top: var(--main-gap);
     margin-bottom: var(--main-gap);
 }
@@ -141,7 +150,8 @@ main.go-down {
     }
 }
 
-main.straight, main.start {
+main.straight,
+main.start {
     animation: straight-animation var(--animation-speed);
 }
 
@@ -156,7 +166,8 @@ main.straight, main.start {
     }
 }
 
-main.go-straight, main.end {
+main.go-straight,
+main.end {
     animation: go-straight-animation var(--animation-speed) forwards;
 }
 
@@ -167,20 +178,18 @@ img {
 }
 
 @media only screen and (max-width: 832px) {
-    img {
+    main > p > img {
         width: calc(100% + (832px - 100vw));
         transform: translateX(calc((100vw - 832px) * 0.5));
     }
 }
 
 @media only screen and (max-width: 768px) {
-    img {
+    main > p > img {
         width: calc(100% + var(--body-margin) * 2);
         transform: translateX(calc(var(--body-margin) * -1));
     }
 }
-
-
 
 nav {
     display: block;
@@ -230,7 +239,8 @@ a {
     outline: none;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
     color: var(--link-color-active);
 }
 
@@ -254,15 +264,19 @@ div.input-wrapper.invalid > label {
     color: var(--error-color);
 }
 
-label.hover, label.focus {
+label.hover,
+label.focus {
     color: var(--text-color-active);
 }
 
-div.input-wrapper.invalid > label.hover, div.input-wrapper.invalid > label.focus {
+div.input-wrapper.invalid > label.hover,
+div.input-wrapper.invalid > label.focus {
     color: var(--error-color-active);
 }
 
-input:not([type=checkbox]), textarea, select {
+input:not([type=checkbox]),
+textarea,
+select {
     box-sizing: border-box;
     width: 100%;
     padding: 8px;
@@ -280,15 +294,27 @@ textarea {
     min-height: 128px;
 }
 
-div.input-wrapper.invalid > input:not([type=checkbox]), div.input-wrapper.invalid > textarea, div.input-wrapper.invalid > select {
+div.input-wrapper.invalid > input:not([type=checkbox]),
+div.input-wrapper.invalid > textarea,
+div.input-wrapper.invalid > select {
     border-color: var(--error-color);
 }
 
-input:not([type=checkbox]):hover, input:not([type=checkbox]):focus, textarea:hover, textarea:focus, select:hover, select:focus {
+input:not([type=checkbox]):hover,
+input:not([type=checkbox]):focus,
+textarea:hover,
+textarea:focus,
+select:hover,
+select:focus {
     border: 2px solid var(--text-color-active);
 }
 
-div.input-wrapper.invalid > input:not([type=checkbox]):hover, div.input-wrapper.invalid > input:not([type=checkbox]):focus, div.input-wrapper.invalid > textarea:hover, div.input-wrapper.invalid > textarea:focus, div.input-wrapper.invalid > select:hover, div.input-wrapper.invalid > select:focus {
+div.input-wrapper.invalid > input:not([type=checkbox]):hover,
+div.input-wrapper.invalid > input:not([type=checkbox]):focus,
+div.input-wrapper.invalid > textarea:hover,
+div.input-wrapper.invalid > textarea:focus,
+div.input-wrapper.invalid > select:hover,
+div.input-wrapper.invalid > select:focus {
     border: 2px solid var(--error-color-active);
 }
 
@@ -299,8 +325,10 @@ input[type=submit] {
     color: var(--background-color);
 }
 
-input[type=submit]:hover, input[type=submit]:hover {
+input[type=submit]:hover,
+input[type=submit]:focus {
     background-color: var(--text-color-active);
+    border: none;
 }
 
 @keyframes fade-in {
@@ -370,7 +398,8 @@ article {
     transition: box-shadow var(--transition-speed);
 }
 
-article:hover, article:focus {
+article:hover,
+article:focus {
     box-shadow: inset 0px 0px 128px black;
 }
 
@@ -385,7 +414,8 @@ article > div.image-holder {
     transition: filter var(--transition-speed), box-shadow var(--transition-speed);
 }
 
-article:hover > div.image-holder, article:focus > div.image-holder {
+article:hover > div.image-holder,
+article:focus > div.image-holder {
     filter: brightness(80%);
     box-shadow: inset 0px 0px 128px black;
 }
@@ -399,7 +429,8 @@ article > h2 {
     overflow: hidden;
 }
 
-article:hover > h2, article:focus > h2 {
+article:hover > h2,
+article:focus > h2 {
     color: var(--background-color-active);
 }
 
@@ -414,15 +445,22 @@ article > p {
     overflow: hidden;
 }
 
-article:hover > p, article:focus > p {
+article:hover > p,
+article:focus > p {
     color: var(--background-color-active);
+}
+
+div.table-wrapper {
+    overflow-x: auto;
 }
 
 table {
     border-collapse: collapse;
+    width: 100%;
 }
 
-td, th {
+td,
+th {
     padding: 2px;
 }
 
@@ -438,8 +476,10 @@ th {
     color: var(--background-color);
 }
 
-pre, code {
-    font-family: "Fira Code"
+pre,
+code {
+    font-family: "Fira Code";
+    font-size: 14px;
 }
 
 blockquote {

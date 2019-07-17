@@ -1,5 +1,3 @@
-const md = (new (require("remarkable"))());
-
 wrap("layout.js", () => {
     h1(translate({
         "en": "Create Article",
@@ -10,41 +8,50 @@ wrap("layout.js", () => {
             "en": "Back",
             "de": "Zurück"
         }));
-        a({"href": "/articles/upload"}, translate({
-            "en": "Upload Files",
-            "de": "Dateien hochladen"
-        }));
     });
     h2({"class": "collapsible"}, translate({
-        "en": "Markdown Overview",
-        "de": "Markdown Übersicht"
+        "en": "How to Write an Article",
+        "de": "Wie man einen Artikel schreibt"
     }));
-
-    let overview = ["# " + translate({"en": "Heading 1", "de": "Überschrift 1"}),
-                    "## " + translate({"en": "Heading 2", "de": "Überschrift 2"}),
-                    "### " + translate({"en": "Heading 3", "de": "Überschrift 3"}),
-                    "#### " + translate({"en": "Heading 4", "de": "Überschrift 4"}),
-                    "##### " + translate({"en": "Heading 5", "de": "Überschrift 5"}),
-                    "###### " + translate({"en": "Heading 6", "de": "Überschrift 6"}),
-                    "Paragraph 1\n\nParagraph 2",
-                    translate({"en": "Line 1  \nLine 2", "de": "Zeile 1  \nZeile 2"}),
-                    translate({"en": "**Bold 1**  \n__Bold 2__", "de": "**Fett 1**  \n__Fett 2__"}),
-                    translate({"en": "*Italic 1*  \n_Italic 2_", "de": "*Kursiv 1*  \n_Kursiv 2_"}),
-                    translate({"en": "> Quote", "de": "> Zitat"}),
-                    "1. Element 1\n2. Element 2\n3. Element 3",
-                    "* Element 1\n* Element 2\n* Element 3",
-                    "    Code Block",
-                    "`Code`",
-                    "---",
-                    "[Duck Duck Go](https://duckduckgo.com)",
-                    "![Test Image](/images/test-image.jpg)"];
-    
-    for(let i = 0; i < overview.length; i++) {
-        overview[i] = ["<pre>" + overview[i] + "</pre>", md.render(overview[i])];
-    }
-
-    spreadsheet(["Markdown", translate({"en": "Output", "de": "Ergebnis"})], overview);
-
+    div(() => {
+        p(translate({
+            "en": "It's simple, I swear ...",
+            "de": "Es ist einfach, wirklich ..."
+        }))
+    });
+    h2({"class": "collapsible"}, translate({
+        "en": "Content Policy",
+        "de": "Inhaltsrichtlinien"
+    }));
+    div(() => {
+        p(translate({
+            "en": "The Content is prohibited, if it ...",
+            "de": "Der Inhalt ist untersagt, falls er ..."
+        }));
+        ol(() => {
+            li(translate({
+                "en": "Involves threats or harassments to individuals or groups",
+                "de": "Drohungen und Belästigungen gegen Individuen oder Gruppen beinhaltet"
+            }));
+            li(translate({
+                "en": "Is morally offensive",
+                "de": "Moralisch anstössig ist"
+            }));
+            li(translate({
+                "en": "Is not of sufficient quality",
+                "de": "Qualitativ ungenügend ist"
+            }));
+            li(translate({
+                "en": "Is purposefully misleading",
+                "de": "Absichtlich irreführender ist"
+            }));
+            li(translate({
+                "en": "Is spam",
+                "de": "Spam ist"
+            }));
+        });
+    });
+    markdownOverview();
     request("article", save, translate({
         "en": "An article with the same name already exists",
         "de": "Es existiert bereits ein Artikel mit diesem Namen"
