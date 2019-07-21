@@ -132,6 +132,8 @@ html(() => {
 
             let host = req.headers.host;
 
+            console.log(host);
+
             let url = req.url;
             let urlQuestionmark = url.indexOf("?");
             if(urlQuestionmark !== -1) {
