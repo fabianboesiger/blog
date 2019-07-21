@@ -139,6 +139,7 @@ html(() => {
             }
 
             console.log(url, refererUrl);
+            console.log(host, refererHost);
 
             if(host !== refererHost) {
                 c = "start";
