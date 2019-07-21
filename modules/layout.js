@@ -138,6 +138,8 @@ html(() => {
                 url = url.substring(0, urlQuestionmark);
             }
 
+            console.log(url, refererUrl);
+
             if(host !== refererHost) {
                 c = "start";
             } else {
