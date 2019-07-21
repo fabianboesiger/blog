@@ -95,6 +95,7 @@ wrap("layout.js", () => {
         [translate({"en": "Username", "de": "Benutzername"}), user.username],
         [translate({"en": "Member Since", "de": "Nutzer seit"}), beautifyDate(user.date)],
         ["Moai", "🗿 " + user.score],
+        ["Zustimmung", Math.round((approval + 1) / 2 * 100) + "%"],
         [translate({"en": "Developer", "de": "Entwickler"}), yn(user.developer)],
         [translate({"en": "Write Permission", "de": "Schreibberechtigung"}), yn(user.writer)],
         [translate({"en": "Moderator", "de": "Moderator"}), yn(user.moderator)],
@@ -107,6 +108,7 @@ wrap("layout.js", () => {
         [translate({"en": "Total Dislikes on Comments", "de": "Totale Dislikes für Kommentare"}), "" + dislikeSumComments],
     ]);
     
+    /*
     h2(translate({
         "en": "Approval",
         "de": "Zustimmung"
@@ -120,4 +122,5 @@ wrap("layout.js", () => {
         div({"class": "progressbar-bar", "style": "width: " + ((approval + 1) / 2 * 100) + "%"});
         div({"class": "progressbar-text"}, Math.round((approval + 1) / 2 * 100) + "%");
     });
+    */
 });
