@@ -189,7 +189,7 @@ wrap("layout.js", () => {
     });
     
     if(content !== null) {
-        output += content.replace(/src="/, "src=\"/files/" + id + "/");
+        output += content.replace(/src="/g, "src=\"/files/" + id + "/");
     }
     h2(translate({
         "en": "Write a Comment",
