@@ -52,11 +52,11 @@ if(type !== undefined) {
     } else {
         let commentid = req.params.comment;
         if(commentid === undefined) {
-            return;
+            redirect("/articles/article?id=" + id);
         }
         let comment = load("comment", commentid);
         if(comment === null) {
-            return;
+            redirect("/articles/article?id=" + id);
         }
 
         if(type === "likecomment") {
@@ -81,7 +81,6 @@ if(type !== undefined) {
         } else
         if(type === "deletecomment") {
             unlink(comment);
-            return;
         }
 
         save(comment);
