@@ -26,6 +26,7 @@ if(type !== undefined) {
                 article.dislikes.splice(article.dislikes.indexOf(visitor.username), 1);
             }
         }
+        save(article);
     } else
     if(type === "dislike") {
         if(article.dislikes.includes(visitor.username)) {
@@ -36,6 +37,7 @@ if(type !== undefined) {
                 article.likes.splice(article.likes.indexOf(visitor.username), 1);
             }
         }
+        save(article);
     } else
     if(type === "delete") {
         unlinkAll("comment", {"article": article._id});
@@ -68,6 +70,7 @@ if(type !== undefined) {
                     comment.dislikes.splice(comment.dislikes.indexOf(visitor.username), 1);
                 }
             }
+            save(comment);
         } else
         if(type === "dislikecomment") {
             if(comment.dislikes.includes(visitor.username)) {
@@ -78,16 +81,13 @@ if(type !== undefined) {
                     comment.likes.splice(comment.likes.indexOf(visitor.username), 1);
                 }
             }
+            save(comment);
         } else
         if(type === "deletecomment") {
             unlink(comment);
         }
 
-        save(comment);
-
     }
 }
-
-save(article);
 
 redirect("/articles/article?id=" + id);
