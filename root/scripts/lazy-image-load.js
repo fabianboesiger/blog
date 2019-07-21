@@ -7,6 +7,6 @@ window.addEventListener("load", () => {
         download.onload = function(){
             image.src = this.src;   
         };
-        download.src = "http://an.image/to/aynchrounously/download.jpg";
+        download.src = image.getAttribute("lazysrc");
     }
 });

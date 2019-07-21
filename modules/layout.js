@@ -117,6 +117,7 @@ html(() => {
         script({"src": "/scripts/link-animation.js"}); 
         script({"src": "/scripts/run-collapsibles.js"});
         script({"src": "/scripts/keep-scroll-position.js"});
+        script({"src": "/scripts/lazy-image-load.js"});
     });
     body(() => {
         let referer = req.headers.referer;
@@ -137,7 +138,7 @@ html(() => {
             if(urlQuestionmark !== -1) {
                 url = url.substring(0, urlQuestionmark);
             }
-            
+
             if(host !== refererHost) {
                 c = "start";
             } else {
