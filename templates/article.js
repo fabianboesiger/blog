@@ -46,6 +46,9 @@
         }),
         "postsave": (data) => {
             const fs = require("fs");
+            if(!fs.existsSync("./root/files")) {
+                fs.mkdirSync("./root/files");
+            }
             let to = "./root/files/" + data._id;
             if(!fs.existsSync(to)) {
                 fs.mkdirSync(to, {"recursive": true});
