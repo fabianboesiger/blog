@@ -130,19 +130,14 @@ html(() => {
                 refererUrl = refererUrl.substring(0, refererUrlQuestionmark);
             }
 
-            let host = req.headers.host;
-
-            console.log(req.headers);
+            let host = "blog.ddnss.ch";
 
             let url = req.url;
             let urlQuestionmark = url.indexOf("?");
             if(urlQuestionmark !== -1) {
                 url = url.substring(0, urlQuestionmark);
             }
-
-            console.log(url, refererUrl);
-            console.log(host, refererHost);
-
+            
             if(host !== refererHost) {
                 c = "start";
             } else {
