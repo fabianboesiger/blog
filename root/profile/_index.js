@@ -37,6 +37,10 @@ wrap("layout.js", () => {
                 "en": "Sign Out",
                 "de": "Abmelden"
             }));
+            a({"href": "/profile/delete"}, translate({
+                "en": "Delete Account",
+                "de": "Account löschen"
+            }));
         }
         if(visitor !== null && visitor.developer) {
             a({"href": "/profile/permissions?user=" + user._id}, translate({

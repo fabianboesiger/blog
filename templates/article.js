@@ -95,7 +95,7 @@
                 })
             },
             {
-                "value": "tech", 
+                "value": "technology", 
                 "content": translate({
                     "en": "Technology",
                     "de": "Technologie"

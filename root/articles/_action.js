@@ -39,7 +39,13 @@ if(type !== undefined) {
     } else
     if(type === "delete") {
         unlinkAll("comment", {"article": article._id});
-        fs.rmdir("./root/files/" + article._id, (err) => {});
+        let path = "./root/files/" + article._id;
+        if(fs.existsSync(path)) {
+            fs.readdirSync(path).forEach(function(file, index) {
+                fs.unlinkSync(path + "/" + file);
+            });
+            fs.rmdirSync(path);
+        }
         unlink(article);
         redirect("/articles");
         return;
