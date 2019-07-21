@@ -1,5 +1,5 @@
 window.addEventListener("load", () => {
-    let inputs = document.getElementsByTagName("input");
+    let inputs = document.querySelectorAll("input, textarea, select");
     for(let i = 0; i < inputs.length; i++) {
         let input = inputs[i];
         let label = input.previousSibling || input.nextSibling;

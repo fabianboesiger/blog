@@ -39,10 +39,10 @@
             "en": "Upload Files",
             "de": "Dateien hochladen"
         }),
-        "extension": ["jpg", "png", "gif"],
+        "extension": ["jpg", "png", "gif", "jpeg"],
         "extension-message": translate({
-            "en": "File type is not valid, only JPGs, PNGs and GIFs are allowed",
-            "de": "Dateityp ist falsch, nur JPGs, PNGs und GIFs sind erlaubt"
+            "en": "File type is not valid, only JPGs, JPEGs, PNGs and GIFs are allowed",
+            "de": "Dateityp ist falsch, nur JPGs, JPEGs, PNGs und GIFs sind erlaubt"
         }),
         "postsave": (data) => {
             const fs = require("fs");
@@ -52,7 +52,6 @@
             }
             data.files.forEach((filename) => {
                 fs.rename("./temporary/" + filename, to + "/" +filename, (err) => {
-                    console.log(err);
                 });
             });
         }
@@ -67,18 +66,94 @@
         "required-message": translate({
             "en": "Content is required",
             "de": "Es wird einen Inhalt benötigt"
+        }),
+        "empty": false,
+        "empty-message": translate({
+            "en": "Content can't be empty",
+            "de": "Der Inhalt darf nicht leer sein"
         })
     },
     "date": {
         "hidden": true,
         "required": true,
-        "default": (data) => {
-            if(data.date === undefined) {
-                return Date.now();
-            } else {
-                return data.date;
-            }
+        "default": () => {
+            return Date.now();
         }
+    },
+    "category": {
+        "type": "select",
+        "label": translate({
+            "en": "Category",
+            "de": "Kategorie"
+        }),
+        "options": [
+            {
+                "value": "politics", 
+                "content": translate({
+                    "en": "Politics",
+                    "de": "Politik"
+                })
+            },
+            {
+                "value": "tech", 
+                "content": translate({
+                    "en": "Technology",
+                    "de": "Technologie"
+                })
+            },
+            {
+                "value": "science", 
+                "content": translate({
+                    "en": "Science",
+                    "de": "Wissenschaft"
+                })
+            },
+            {
+                "value": "entertainment", 
+                "content": translate({
+                    "en": "Entertainment",
+                    "de": "Unterhaltung"
+                })
+            },
+            {
+                "value": "meta", 
+                "content": translate({
+                    "en": "Meta",
+                    "de": "Meta"
+                })
+            }
+        ],
+        "options-message": translate({
+            "en": "Please select a valid value",
+            "de": "Bitte wähle einen gültigen Wert"
+        })
+    },
+    "language": {
+        "type": "select",
+        "label": translate({
+            "en": "Language",
+            "de": "Sprache"
+        }),
+        "options": [
+            {
+                "value": "en", 
+                "content": translate({
+                    "en": "English",
+                    "de": "Englisch"
+                })
+            },
+            {
+                "value": "de", 
+                "content": translate({
+                    "en": "German",
+                    "de": "Deutsch"
+                })
+            }
+        ],
+        "options-message": translate({
+            "en": "Please select a valid value",
+            "de": "Bitte wähle einen gültigen Wert"
+        })
     },
     "visible": {
         "type": "boolean",
@@ -88,5 +163,30 @@
         }),
         "required": true,
         "default": false
+    },
+    "clicks": {
+        "type": "number",
+        "hidden": true,
+        "required": true,
+        "default": 0,
+    },
+    "likes": {
+        "type": "array",
+        "hidden": true,
+        "required": true,
+        "default": []
+    },
+    "dislikes": {
+        "type": "array",
+        "hidden": true,
+        "required": true,
+        "default": []
+    },
+    "author": {
+        "type": "text",
+        "hidden": true,
+        "default": () => {
+            return session.user;
+        }
     }
 })

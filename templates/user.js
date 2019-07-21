@@ -47,7 +47,11 @@
             "en": "Password is required.",
             "de": "Das Passwort wird benötigt."
         }),
-        "presave": (data) => {return data.password.length <= 16 ? require("bcrypt").hashSync(data.password, 10): data.password;},
+        "presave": (data) => {
+            if(data.password.length <= 16) {
+                data.password = require("bcrypt").hashSync(data.password, 10);
+            }
+        },
         "autocomplete": false
     },
     "confirmPassword": {
@@ -70,6 +74,34 @@
         }),
         "autocomplete": false,
         "save": false
+    },
+    "email": {
+        "label": translate({
+            "en": "Email Address",
+            "de": "E-Mail Adresse"
+        }),
+        "type": "email",
+        "required": true,
+        "required-message": translate({
+            "en": "Email Address is required.",
+            "de": "Die E-Mail Adresse wird benötigt."
+        }),
+        "empty": false,
+        "empty-message": translate({
+            "en": "Email Address is required",
+            "de": "Die E-Mail Adresse muss angegeben werden"
+        }),
+        "onchange": (data) => {
+            data.key = generateId(64);
+            data.confirmed = false;
+            mail(data.email, translate({
+                "en": "Confirm Email Address",
+                "de": "Bestätige deine E-Mail Adresse"
+            }), translate({
+                "en": "<h1>Confirm Email Address</h1><p>Hello, " + data.username + "! Please confirm your email address by clicking <a href=\"http://blog.ddnss.ch/profile/confirm?user=" + data.username + "&key=" + data.key + "\">here</a>.",
+                "de": "<h1>Bestätige deine E-Mail Adresse</h1><p>Hallo, " + data.username + "! Bitte bestätige deine E-Mail Adresse, indem du <a href=\"http://blog.ddnss.ch/profile/confirm?user=" + data.username + "&key=" + data.key + "\">hier</a> klickst."
+            }));
+        }
     },
     "developer": {
         "type": "boolean",
@@ -95,6 +127,33 @@
         "type": "boolean",
         "required": true,
         "default": false,
+        "hidden": true
+    },
+    "date": {
+        "hidden": true,
+        "required": true,
+        "default": () => {
+            return Date.now();
+        }
+    },
+    "key": {
+        "hidden": true,
+        "required": true,
+        "default": () => {
+            return generateId(64);
+        }
+    },
+    "score": {
+        "hidden": true,
+        "required": true,
+        "default": 0
+    },
+    "confirmed": {
+        "hidden": true,
+        "required": true,
+        "default": false
+    },
+    "lastRecoveryAttempt": {
         "hidden": true
     }
 })

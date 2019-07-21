@@ -1,7 +1,7 @@
 wrap("layout.js", () => {
     div({"class": "centered-form"}, () => {
         h1(translate({
-            "en": "Sign Ip",
+            "en": "Sign In",
             "de": "Anmelden"
         }));
         nav(() => {
@@ -12,6 +12,10 @@ wrap("layout.js", () => {
             a({"href": "/signup"}, translate({
                 "en": "Sign Up",
                 "de": "Registrieren"
+            }));
+            a({"href": "/recover"}, translate({
+                "en": "Forgot Password",
+                "de": "Passwort vergessen"
             }));
         });
         request("user", (name, data, template, id) => {
