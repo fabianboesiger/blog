@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 let id = req.params.id;
 
 if(id === undefined) {
@@ -37,6 +39,7 @@ if(type !== undefined) {
     } else
     if(type === "delete") {
         unlinkAll("comment", {"article": article._id});
+        fs.rmdir("./root/files/" + article._id, (err) => {});
         unlink(article);
         redirect("/articles");
         return;
