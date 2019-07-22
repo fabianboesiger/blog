@@ -50,12 +50,13 @@ loadArticles = function(filter, sort = "latest", size = -1) {
                         if(imageSource !== null) {
                             div({
                                 "class": "image-holder", 
-                                "style": "background-image: url(/files/" + element._id + "/" + imageSource + ")"
+                                /*"style": "background-image: url(/files/" + element._id + "/" + imageSource + ")"*/
+                                "lazy-background": "/files/" + element._id + "/" + imageSource
                             });
                         }
                         output += title;
                         if(paragraph !== null) {
-                            output += paragraph.replace(/src="/, "src=\"/files/" + element._id + "/");
+                            output += paragraph.replace(/src="/, "lazy-src=\"/files/" + element._id + "/");
                         }
                     });
                 })
@@ -118,6 +119,7 @@ html(() => {
         script({"src": "/scripts/run-collapsibles.js"});
         script({"src": "/scripts/keep-scroll-position.js"});
         script({"src": "/scripts/lazy-image-load.js"});
+        script({"src": "/scripts/background-link.js"});
     });
     body(() => {
         let referer = req.headers.referer;

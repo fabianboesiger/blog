@@ -31,7 +31,7 @@ interval(() => {
             score += (r < 0) ? -Math.sqrt(Math.abs(r)) : Math.sqrt(r);
         });
 
-        user.score = score;
+        user.score = Math.floor(score);
         
         save(user);
     });

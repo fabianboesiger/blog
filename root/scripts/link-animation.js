@@ -5,6 +5,10 @@ window.addEventListener("load", () => {
     for(let i = 0; i < links.length; i++) {
         let link = links[i];
 
+        if(link.classList.contains("background-link")) {
+            continue;
+        }
+
         link.addEventListener("click", (e) => {
             e.preventDefault();
 

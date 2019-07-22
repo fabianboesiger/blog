@@ -39,7 +39,7 @@ wrap("layout.js", () => {
     }
     */
     p(translate({
-        "en": "Welcome at Fälis Blog. On this website can read articles from selected authors, write comments and more. Visit me on <a href=\"https://github.com/fabianboesiger\">GitHub</a> if you want to know more about this project.",
+        "en": "Welcome at Fälis Blog. On this website you can read articles from selected authors, write comments and more. Visit me on <a href=\"https://github.com/fabianboesiger\">GitHub</a> if you want to know more about this project.",
         "de": "Willkommen bei Fälis Blog. Auf dieser Seite kannst du Artikel von ausgelesenen Autoren lesen, Kommentare abgeben und mehr. Besuche mich auf <a href=\"https://github.com/fabianboesiger\">GitHub</a>, wenn dir dieses Projekt gefällt."
     }));
     h2(translate({

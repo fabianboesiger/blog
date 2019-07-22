@@ -8,7 +8,6 @@ window.addEventListener("load", () => {
     let save = document.querySelectorAll("a, input[type=submit]");
     for(let i = 0; i < save.length; i++) {
         save[i].addEventListener("click", (e) => {
-            console.log(window.pageYOffset);
             document.cookie = "offset=" + window.pageXOffset+"|"+window.pageYOffset+"|"+key;
         });
     }

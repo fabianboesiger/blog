@@ -69,24 +69,24 @@ wrap("layout.js", () => {
 
         p(() => {
             if(visitor !== null) {
-                a({"href": "/articles/action?type=like&id=" + id, "animation": "go-stay"}, () => {
+                a({"class": "background-link", "href": "/articles/action?type=like&id=" + id, "animation": "go-stay"}, () => {
                     let c = "stats";
                     if(article.likes.includes(visitor.username)) {
                         c += " active";
                     }
                     span({"class": c}, () => {
                         span({"class": "icon"}, "👍");
-                        print(article.likes.length);
+                        span("" + article.likes.length);
                     });
                 });
-                a({"href": "/articles/action?type=dislike&id=" + id, "animation": "go-stay"}, () => {
+                a({"class": "background-link", "href": "/articles/action?type=dislike&id=" + id, "animation": "go-stay"}, () => {
                     let c = "stats";
                     if(article.dislikes.includes(visitor.username)) {
                         c += " active";
                     }
                     span({"class": c}, () => {
                         span({"class": "icon"}, "👎");
-                        print(article.dislikes.length);
+                        span("" + article.dislikes.length);
                     });
                 });
             } else {
@@ -189,7 +189,7 @@ wrap("layout.js", () => {
     });
     
     if(content !== null) {
-        output += content.replace(/src="/g, "src=\"/files/" + id + "/");
+        output += content.replace(/src="/g, "lazy-src=\"/files/" + id + "/");
     }
     if(visitor !== null) {
         h2(translate({
@@ -203,65 +203,66 @@ wrap("layout.js", () => {
             "en": "Comment saved successfully",
             "de": "Kommentar erfolgreich erstellt"
         }));
-        h2(translate({
-            "en": "Comments",
-            "de": "Kommentare"
-        }));
-        let comments = loadAll("comment", {"article": id});
-        if(comments.length > 0) {
-            comments.forEach((comment) => {
-                div({"class": "comment"}, () => {
-                    metaData(comment.author, comment.date);
-                    p(comment.content);
-                    p(() => {
-                        if(visitor !== null) {
-                            a({"href": "/articles/action?type=likecomment&id=" + id + "&comment=" + comment._id, "animation": "go-stay"}, () => {
-                                let c = "stats";
-                                if(comment.likes.includes(visitor.username)) {
-                                    c += " active";
-                                }
-                                span({"class": c}, () => {
-                                    span({"class": "icon"}, "👍");
-                                    print(comment.likes.length);
-                                });
-                            });
-                            a({"href": "/articles/action?type=dislikecomment&id=" + id + "&comment=" + comment._id, "animation": "go-stay"}, () => {
-                                let c = "stats";
-                                if(comment.dislikes.includes(visitor.username)) {
-                                    c += " active";
-                                }
-                                span({"class": c}, () => {
-                                    span({"class": "icon"}, "👎");
-                                    print(comment.dislikes.length);
-                                });
-                            });
-                        } else {
-                            span({"class": "stats"}, () => {
-                                span({"class": "icon"}, "👍");
-                                print(comment.likes.length);
-                            });
-                            span({"class": "stats"}, () => {
-                                span({"class": "icon"}, "👎");
-                                print(comment.dislikes.length);
-                            });
-                        }
-                        if(visitor !== null) {
-                            if(visitor.username === comment.author || visitor.moderator) {
-                                a({"href": "/articles/action?type=deletecomment&id=" + id + "&comment=" + comment._id}, translate({
-                                    "en": "Delete Comment",
-                                    "de": "Kommentar löschen"
-                                }));
+    }
+
+    h2(translate({
+        "en": "Comments",
+        "de": "Kommentare"
+    }));
+    let comments = loadAll("comment", {"article": id});
+    if(comments.length > 0) {
+        comments.forEach((comment) => {
+            div({"class": "comment"}, () => {
+                metaData(comment.author, comment.date);
+                p(comment.content);
+                p(() => {
+                    if(visitor !== null) {
+                        a({"class": "background-link", "href": "/articles/action?type=likecomment&id=" + id + "&comment=" + comment._id, "animation": "go-stay"}, () => {
+                            let c = "stats";
+                            if(comment.likes.includes(visitor.username)) {
+                                c += " active";
                             }
+                            span({"class": c}, () => {
+                                span({"class": "icon"}, "👍");
+                                span("" + comment.likes.length);
+                            });
+                        });
+                        a({"class": "background-link", "href": "/articles/action?type=dislikecomment&id=" + id + "&comment=" + comment._id, "animation": "go-stay"}, () => {
+                            let c = "stats";
+                            if(comment.dislikes.includes(visitor.username)) {
+                                c += " active";
+                            }
+                            span({"class": c}, () => {
+                                span({"class": "icon"}, "👎");
+                                span("" + comment.dislikes.length);
+                            });
+                        });
+                    } else {
+                        span({"class": "stats"}, () => {
+                            span({"class": "icon"}, "👍");
+                            print(comment.likes.length);
+                        });
+                        span({"class": "stats"}, () => {
+                            span({"class": "icon"}, "👎");
+                            print(comment.dislikes.length);
+                        });
+                    }
+                    if(visitor !== null) {
+                        if(visitor.username === comment.author || visitor.moderator) {
+                            a({"href": "/articles/action?type=deletecomment&id=" + id + "&comment=" + comment._id}, translate({
+                                "en": "Delete Comment",
+                                "de": "Kommentar löschen"
+                            }));
                         }
-                    });
+                    }
                 });
             });
-        } else {
-            p(translate({
-                "en": "There are currently no comments",
-                "de": "Es sind derzeit keine Kommentare vorhanden"
-            }));
-        }
+        });
+    } else {
+        p(translate({
+            "en": "There are currently no comments",
+            "de": "Es sind derzeit keine Kommentare vorhanden"
+        }));
     }
     
 });
