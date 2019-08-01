@@ -43,18 +43,28 @@ wrap("layout.js", () => {
         "de": "Willkommen bei Fälis Blog. Auf dieser Seite kannst du Artikel von ausgelesenen Autoren lesen, Kommentare abgeben und mehr. Besuche mich auf <a href=\"https://github.com/fabianboesiger\">GitHub</a>, wenn dir dieses Projekt gefällt."
     }));
     h2(translate({
+        "en": "Explore",
+        "de": "Entdecken"
+    }));
+    /*
+    h2(translate({
         "en": "The Latest",
         "de": "Das Neueste"
     }));
+    */
     loadArticles({"visible": true}, "latest", 1);
+    /*
     h2(translate({
         "en": "The Best",
         "de": "Das Beste"
     }));
+    */
     loadArticles({"visible": true}, "best", 1);
+    /*
     h2(translate({
         "en": "The Most Clicked",
         "de": "Das meist geklickte"
     }));
+    */
     loadArticles({"visible": true}, "clicks", 1);
 });

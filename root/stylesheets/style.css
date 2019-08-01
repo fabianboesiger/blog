@@ -1,8 +1,8 @@
 :root {
-    --background-color: #dfe6e9;
-    --background-color-active: #b2bec3;
-    --text-color: #2d3436;
-    --text-color-active: #636e72;
+    --background-color: #2d3436;
+    --background-color-active: #636e72;
+    --text-color: #dfe6e9;
+    --text-color-active: #b2bec3;
     --link-color: #0984e3;
     --link-color-active: #74b9ff;
     --error-color: #d63031;
@@ -197,7 +197,6 @@ img {
 
 nav {
     display: block;
-    margin-top: -12px;
     margin-bottom: calc(var(--main-gap) * 2);
 }
 
@@ -388,14 +387,14 @@ article {
     height: 50vh;
     min-height: 256px;
     position: relative;
+    box-shadow: inset 0px 0px 128px black;
     background-color: var(--text-color);
-    box-shadow: inset 0px 0px 256px black;
     transition: box-shadow var(--transition-speed);
 }
 
 article:hover,
 article:focus {
-    box-shadow: inset 0px 0px 128px black;
+    box-shadow: inset 0px 0px 256px black;
 }
 
 article > div.image-holder {
@@ -404,21 +403,21 @@ article > div.image-holder {
     height: 100%;
     background-position: center;
     background-size: cover;
-    filter: brightness(40%);
-    box-shadow: inset 0px 0px 256px black;
+    filter: brightness(80%);
+    box-shadow: inset 0px 0px 128px black;
     transition: filter var(--transition-speed), box-shadow var(--transition-speed);
 }
 
 article:hover > div.image-holder,
 article:focus > div.image-holder {
-    filter: brightness(80%);
-    box-shadow: inset 0px 0px 128px black;
+    filter: brightness(40%);
+    box-shadow: inset 0px 0px 256px black;
 }
 
 article > h2 {
     position: absolute;
     margin: var(--body-margin);
-    color: var(--background-color);
+    color: var(--text-color-active);
     transition: color var(--transition-speed);
     max-height: calc(50% - var(--body-margin));
     overflow: hidden;
@@ -427,7 +426,7 @@ article > h2 {
 
 article:hover > h2,
 article:focus > h2 {
-    color: var(--background-color-active);
+    color: var(--text-color);
 }
 
 article > p {
@@ -435,15 +434,17 @@ article > p {
     bottom: 0;
     left: 0;
     margin: var(--body-margin);
-    color: var(--background-color);
-    transition: color var(--transition-speed);
+    color: var(--text-color-active);
+    transition: color var(--transition-speed), opacity var(--transition-speed);
     max-height: calc(50% - var(--body-margin));
     overflow: hidden;
+    opacity: 0;
 }
 
 article:hover > p,
 article:focus > p {
-    color: var(--background-color-active);
+    color: var(--text-color);
+    opacity: 1;
 }
 
 div.table-wrapper {
@@ -491,15 +492,9 @@ blockquote {
 blockquote::before {
     content: "“";
     position: absolute;
-    top: 4px;
-    left: -8px;
-}
-
-blockquote::after {
-    content: "”";
-    position: absolute;
-    bottom: 0px;
-    right: -8px;
+    top: 0px;
+    left: -16px;
+    font-size: 32px;
 }
 
 .collapsible {
@@ -535,8 +530,8 @@ blockquote::after {
 
 .stats {
     display: inline-block;
-    color: var(--text-color);
-    background-color: var(--background-color-active);
+    color: var(--background-color);
+    background-color: var(--text-color);
     font-style: normal;
     height: 24px;
     padding-right: 8px;
@@ -547,8 +542,8 @@ blockquote::after {
 
 .stats > .icon {
     display: inline-block;
-    background-color: var(--text-color);
-    color: var(--background-color-active);
+    background-color: var(--background-color-active);
+    color: var(--text-color);
     height: 20px;
     padding-top: 2px;
     padding-bottom: 2px;
