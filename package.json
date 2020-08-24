@@ -19,7 +19,7 @@
   "homepage": "https://github.com/fabianboesiger/blog#readme",
   "dependencies": {
     "@fabianboesiger/nodeframework": "^1.2.7",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "remarkable": "^1.7.1"
   }
 }
